@@ -1,0 +1,19 @@
+Hello and thank you for purchasing Low Poly Tanks Package.
+
+IF YOU SEE PINK. MAKE SURE YOU HAVE OPENED THE ASSET IN UNIVERSAL RENDER PIPELINE.
+IF YOU WANT TO USE ASSETS IN STANDARD 3D PROJECT YOU NEED TO CONVERT MATERIALS TO 
+MATCH YOUR PROJECTS RENDERING PIPELINE. 
+
+Auto Generate Lighting is set of in the Lighting Settings.
+
+Autogenerate Colliders is set on in the FBX import settings.
+All the prefabs have mesh colliders.
+
+There are 25 prefabs.
+
+Models have separate parts for animation.
+
+Textures are 512*512 png
+
+For questions you can contact me at:
+a3deve@gmail.com
