@@ -5,7 +5,6 @@ using UnityEngine;
 public class TankMotor : MonoBehaviour
 {
     //components
-    private CharacterController characterController;
     public Transform tf;
     public Pawn pawn;
     public Rigidbody rb;
