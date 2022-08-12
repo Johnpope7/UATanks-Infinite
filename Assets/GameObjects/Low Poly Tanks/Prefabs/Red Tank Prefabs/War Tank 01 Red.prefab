@@ -394,7 +394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7316799986486764492}
-  - component: {fileID: 5655294768236671719}
+  - component: {fileID: 6449919261054956155}
   - component: {fileID: 3789525619406576224}
   - component: {fileID: 5125800656322500529}
   - component: {fileID: 380852227682695937}
@@ -426,8 +426,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &5655294768236671719
-CapsuleCollider:
+--- !u!64 &6449919261054956155
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -436,10 +436,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.2
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1185050495588937533, guid: 60298160509344941b0844e46a33e150, type: 3}
 --- !u!54 &3789525619406576224
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -487,9 +487,9 @@ MonoBehaviour:
   healRate: 2
   motor: {fileID: 0}
   points: 0
-  moveSpeed: 0
-  rotateSpeed: 0
-  turretRotateSpeed: 0
+  moveSpeed: 25
+  rotateSpeed: 300
+  turretRotateSpeed: 30
   turretTf: {fileID: 1711469754998095637}
   tankDamage: 25
   shootCoolDown: 0
@@ -498,7 +498,7 @@ MonoBehaviour:
   isMakingNoise: 0
   bulletPrefab: {fileID: 100000, guid: b2807ec388762e14a91e6f01e789a768, type: 3}
   firingZone: {fileID: 7317814924525194568}
-  bulletLifeSpan: 0
+  bulletLifeSpan: 0.25
   withinWaypointRange: 0
   viewRadius: 10
   fieldOfView: 180
