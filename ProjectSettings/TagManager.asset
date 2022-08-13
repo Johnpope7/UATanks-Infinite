@@ -8,6 +8,7 @@ TagManager:
   - GameManager
   - Enemy
   - Waypoint
+  - Pickup
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - UI
   - Enemy
   - Waypoint
-  - 
+  - Powerup
   - 
   - 
   - 

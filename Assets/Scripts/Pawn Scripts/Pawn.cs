@@ -25,11 +25,11 @@ public class Pawn : MonoBehaviour
         get { return shotForce; }
     }
     [SerializeField]
-    protected float tankDamage = 25f; //damage the player tank does
+    public float tankDamage = 25f; //damage the player tank does
     [SerializeField]
     protected float shootCoolDown; //the cooldown time between shoots, dont change this in the inspector
     [SerializeField]
-    protected float shootCoolDownTime = 2f; //the time our cool down takes to refresh, adjust this to shoot faster or slower
+    public float shootCoolDownTime = 2f; //the time our cool down takes to refresh, adjust this to shoot faster or slower
     protected float noise = 0; //float for how much noise our pawn is making
     public float noiseRange = 10; //float for how far the noise our pawn is making travels
     public bool isMakingNoise = false; //bool for if pawn is making noise or not
@@ -64,7 +64,7 @@ public class Pawn : MonoBehaviour
     #region Custom Methods
     public void Death() //the function that handles the death of all pawns
     {
-        float ch = health.GetHealth();
+        float ch = health.currentHealth;
         if (ch <= 0) 
         {
             GameManager.instance.UpdateScore(points); //wrties the new score to the game manager

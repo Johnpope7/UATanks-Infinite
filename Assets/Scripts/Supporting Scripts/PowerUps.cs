@@ -20,8 +20,23 @@ public class PowerUps : MonoBehaviour
 
     #region Functions
     #region Custom Functions
-    
+    public void OnActivate(Pawn target) //modifies all stats by defined modifiers on active
+    {
+        target.moveSpeed *= speedModifier; //increases the movement speed stat
+        target.shootCoolDownTime -= fireRateModifier; //decreases the time between shots
+        target.tankDamage *= damageModifier; //increases the damage of each tank shot
+        target.health.currentHealth *= healthModifier; //multiplies current health by modifier
+        target.health.MaxHealth *= maxHealthModifier; //multiplies current health by modifier
+    }
 
+    public void OnDeactivate(Pawn target) //reverses the OnActive function
+    {
+        target.moveSpeed /= speedModifier; //resets the movement speed stat
+        target.shootCoolDownTime += fireRateModifier; //resets the time between shots
+        target.tankDamage /= damageModifier; //resets the damage of each tank shot
+        target.health.currentHealth /= healthModifier; //resets current health by modifier
+        target.health.MaxHealth /= maxHealthModifier; //resets current health by modifier
+    }
     #endregion
     #endregion
 }

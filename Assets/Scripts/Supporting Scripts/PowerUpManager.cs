@@ -25,10 +25,31 @@ public class PowerUpManager : MonoBehaviour
 
         foreach (PowerUps power in powerups) 
         {
-            
+            power.duration -= Time.deltaTime; //decrements duration
+            if (power.duration <= 0) 
+            {
+                expiredPowerUps.Add(power); //add to expired list
+                power.duration = power.durationReset; //resets the duration for the next powerup
+            }
+        }
+        foreach (PowerUps power in expiredPowerUps) 
+        {
+            power.OnDeactivate(pawn); //deactivates powerup
+            powerups.Remove(power);
         }
     }
     #endregion
-    #endregion Functions
+    #region Custom Functions
+    public void Add(PowerUps powerup)
+    {
+        powerup.OnActivate(pawn); //run OnActivate of powerup
+
+        if (!powerup.isPermanent) //adds to list if the powerup isnt permanent
+        {
+            powerups.Add(powerup);
+        }
+    }
+    #endregion
+    #endregion
 }
 

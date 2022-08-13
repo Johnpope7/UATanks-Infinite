@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public int currentEnemies; //an int for storing the amount of enemies currently in the level
     public int maxEnemies; //int that stores the maximum amount of enemies allowed per level
     public float enemyspawnDelayTimer; //cooldown timer for enemy spawns
+
+    public float currentPowerUps; //stores the amount of powerups on the map
     #endregion
     void PlayerDeath() 
     {

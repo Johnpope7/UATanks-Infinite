@@ -1144,7 +1144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7316799986486764492, guid: d63e690d463be074ea922dae48b9f8b9, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7316799986486764492, guid: d63e690d463be074ea922dae48b9f8b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3643,7 +3643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7316799986486764492, guid: aef2d5ee21214a84eaa148d51bdbb3f1, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7316799986486764492, guid: aef2d5ee21214a84eaa148d51bdbb3f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4148,7 +4148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7316799986486764492, guid: d3e1086ce2bc6284c9d1febe86b35129, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7316799986486764492, guid: d3e1086ce2bc6284c9d1febe86b35129, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12445,7 +12445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7316799986486764492, guid: 9409318fa72fbef49b4d7dad6f24c7b2, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7316799986486764492, guid: 9409318fa72fbef49b4d7dad6f24c7b2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14670,7 +14670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7345037330904031427, guid: 0a2b09c6eeafaf04d8c9173936b6d35e, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7345037330904031427, guid: 0a2b09c6eeafaf04d8c9173936b6d35e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14714,3 +14714,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a2b09c6eeafaf04d8c9173936b6d35e, type: 3}
+--- !u!1 &7345037329585178462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7345037330904031425, guid: 0a2b09c6eeafaf04d8c9173936b6d35e, type: 3}
+  m_PrefabInstance: {fileID: 7345037329585178461}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7345037329585178463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345037329585178462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d00ce137a66cc14690c8dfce6ad587b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerups: []

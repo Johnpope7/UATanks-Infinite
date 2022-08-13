@@ -126,7 +126,7 @@ public class AIController : Controller
 
                         distanceToTarget = GetDistanceToTarget(); //sets the distanceToTarget
 
-                        if (eHealth.GetPercent() >= 0.25)
+                        if (eHealth.percent >= 0.25)
                         {
                             Flee(); // at 25 percent health enemies flee
                         }
@@ -164,7 +164,7 @@ public class AIController : Controller
                         }
                         break;
                     case Pawn.AIState.Rest:
-                        if (eHealth.GetPercent() >= 0.25) //if health is below 25 percent, rest
+                        if (eHealth.percent >= 0.25) //if health is below 25 percent, rest
                         {
                             Rest();
                         }

@@ -8,47 +8,16 @@ public class Health : MonoBehaviour
     [Header("Game Objects")]
     [SerializeField, Tooltip("The ragdoll spawned when a pawn dies")]
     private GameObject tankParts;
-    private bool spawnParts = true;
+    public bool spawnParts = true;
 
     [Header("Health Values")]
     [SerializeField]
-    private float MaxHealth = 100f;
+    public float MaxHealth = 100f;
     [SerializeField]
-    private float currentHealth = 100f;
-    private float percent;
+    public float currentHealth = 100f;
+    public float percent;
 
 
-    //the code comments itself lol
-    public float GetHealth()
-    {
-        return currentHealth;
-    }
-
-    private void SetHealth(float value)
-    {
-        currentHealth = value;
-    }
-
-    public float GetMaxHealth()
-    {
-        return MaxHealth;
-    }
-
-    private void SetMaxHealth(float value)
-    {
-        MaxHealth = value;
-    }
-
-    public float GetPercent()
-    {
-        percent = currentHealth / MaxHealth;
-        return percent;
-    }
-
-    private void SetPercent()
-    {
-        percent = currentHealth / MaxHealth;
-    }
 
     public void Heal(float heal)
     {
