@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class InputController : Controller
 {
+    #region Variables
     public enum InputScheme { WASD, arrowKeys };
     public InputScheme input = InputScheme.WASD;
     protected float movement;
     protected float turn;
-    /*        
-         var forwardInput = Input.GetAxis("Vertical");
-        var rotationInput = Input.GetAxis("Horizontal");*/
+    #endregion
+
+    #region Functions
+    #region Builtin Functions
     void Start()
     {
         ePawn = GetComponent<Pawn>();
@@ -90,5 +92,7 @@ public class InputController : Controller
                 break;
         }
     }
+    #endregion
+    #endregion
 }
 

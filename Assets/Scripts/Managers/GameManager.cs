@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour 
 {
+    #region Variables
     //our gamemanager instance
     public static GameManager instance;
 
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
     public int currentEnemies; //an int for storing the amount of enemies currently in the level
     public int maxEnemies; //int that stores the maximum amount of enemies allowed per level
     public float enemyspawnDelayTimer; //cooldown timer for enemy spawns
-
+    #endregion
     void PlayerDeath() 
     {
         //DO NOT DESTROY THE PLAYER,

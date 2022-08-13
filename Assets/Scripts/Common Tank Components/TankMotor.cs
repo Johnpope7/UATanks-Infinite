@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class TankMotor : MonoBehaviour
 {
+    #region Variables
     //components
     public Transform tf;
     public Pawn pawn;
     public Rigidbody rb;
-
+    #endregion
+    #region Functions
+    #region BuiltIn Functions
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +25,8 @@ public class TankMotor : MonoBehaviour
     {
 
     }
-
+    #endregion
+    #region Custom Functions
     //function for tank movement
     public void Move(float forwardInput)
     {
@@ -67,6 +71,8 @@ public class TankMotor : MonoBehaviour
     {
         pawn.turretTf.transform.Rotate(0, pawn.turretRotateSpeed * Time.deltaTime, 0);
     }
+    #endregion
+    #endregion
 }
 
 
