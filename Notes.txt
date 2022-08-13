@@ -1,0 +1,2 @@
+have the spawners and waypoints in their own individual rooms, 
+have the spawners have a list of the waypoints in the room and they pass it on to the tanks they spawn
