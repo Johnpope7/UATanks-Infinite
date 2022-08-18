@@ -397,8 +397,10 @@ GameObject:
   - component: {fileID: 6449919261054956155}
   - component: {fileID: 3789525619406576224}
   - component: {fileID: 5125800656322500529}
+  - component: {fileID: 3919155716082806594}
   - component: {fileID: 380852227682695937}
   - component: {fileID: 4443067843068122785}
+  - component: {fileID: 6346126675350204578}
   m_Layer: 6
   m_Name: War Tank 01 Red
   m_TagString: Enemy
@@ -469,8 +471,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankParts: {fileID: 0}
+  spawnParts: 1
   MaxHealth: 100
   currentHealth: 100
+  percent: 0
+--- !u!114 &3919155716082806594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6039651502282674655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97bc04f127b536241b92ccccd1154e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tf: {fileID: 7316799986486764492}
+  pawn: {fileID: 380852227682695937}
+  rb: {fileID: 3789525619406576224}
 --- !u!114 &380852227682695937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,9 +502,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34056d4d067b454da4abf6534ca150a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
+  health: {fileID: 5125800656322500529}
   healRate: 2
-  motor: {fileID: 0}
+  motor: {fileID: 3919155716082806594}
   points: 0
   moveSpeed: 25
   rotateSpeed: 300
@@ -516,6 +535,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd38379564bb2214e91574dc28f7c8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6346126675350204578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6039651502282674655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e33f917b491bef4682104987f7f418c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ePawn: {fileID: 380852227682695937}
+  ptank: {fileID: 0}
+  motor: {fileID: 3919155716082806594}
+  target: {fileID: 0}
+  targetTf: {fileID: 0}
+  eHealth: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  enemyType: 2
+  timer: 3
+  avoidanceStage: 0
+  avoidanceTime: 2
+  stateEnterTime: 0
+  stateExitTime: 30
+  restingHealthRate: 0
+  fleeDistance: 1
+  currentWaypoint: 0
+  withinWaypointRange: 1
+  stopDistance: 0
 --- !u!1 &8487199104496298057
 GameObject:
   m_ObjectHideFlags: 0

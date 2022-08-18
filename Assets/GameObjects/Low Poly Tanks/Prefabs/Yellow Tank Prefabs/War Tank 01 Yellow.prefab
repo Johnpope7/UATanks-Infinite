@@ -400,6 +400,7 @@ GameObject:
   - component: {fileID: -3640304439751872175}
   - component: {fileID: 8420835435777802989}
   - component: {fileID: 6503935271306570854}
+  - component: {fileID: 4757795313961456755}
   m_Layer: 6
   m_Name: War Tank 01 Yellow
   m_TagString: Enemy
@@ -470,8 +471,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankParts: {fileID: 0}
+  spawnParts: 1
   MaxHealth: 100
   currentHealth: 100
+  percent: 0
 --- !u!114 &-3640304439751872175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,9 +487,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bc04f127b536241b92ccccd1154e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tf: {fileID: 0}
-  pawn: {fileID: 0}
-  rb: {fileID: 0}
+  tf: {fileID: 7316799986486764492}
+  pawn: {fileID: 8420835435777802989}
+  rb: {fileID: -7444290661559751494}
 --- !u!114 &8420835435777802989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,21 +502,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34056d4d067b454da4abf6534ca150a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
+  health: {fileID: -4110561825495228733}
   healRate: 2
-  motor: {fileID: 0}
+  motor: {fileID: -3640304439751872175}
   points: 0
   moveSpeed: 25
   rotateSpeed: 300
   turretRotateSpeed: 30
-  turretTf: {fileID: 0}
+  turretTf: {fileID: 1711469754998095637}
   tankDamage: 25
   shootCoolDown: 0
   shootCoolDownTime: 2
   noiseRange: 10
   isMakingNoise: 0
-  bulletPrefab: {fileID: 0}
-  firingZone: {fileID: 0}
+  bulletPrefab: {fileID: 100000, guid: b2807ec388762e14a91e6f01e789a768, type: 3}
+  firingZone: {fileID: 5177147135325860139}
   bulletLifeSpan: 0
   withinWaypointRange: 0
   viewRadius: 10
@@ -532,6 +535,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd38379564bb2214e91574dc28f7c8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4757795313961456755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6039651502282674655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e33f917b491bef4682104987f7f418c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ePawn: {fileID: 8420835435777802989}
+  ptank: {fileID: 0}
+  motor: {fileID: -3640304439751872175}
+  target: {fileID: 0}
+  targetTf: {fileID: 0}
+  eHealth: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  enemyType: 3
+  timer: 3
+  avoidanceStage: 0
+  avoidanceTime: 2
+  stateEnterTime: 0
+  stateExitTime: 30
+  restingHealthRate: 0
+  fleeDistance: 1
+  currentWaypoint: 0
+  withinWaypointRange: 1
+  stopDistance: 0
 --- !u!1 &7672344942521632043
 GameObject:
   m_ObjectHideFlags: 0

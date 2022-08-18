@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 8578363647241352065}
   - component: {fileID: 2177432087948183529}
   - component: {fileID: 7769055084909310727}
+  - component: {fileID: 6494276499628999554}
   m_Layer: 6
   m_Name: War Tank 01 Green
   m_TagString: Enemy
@@ -500,8 +501,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankParts: {fileID: 0}
+  spawnParts: 1
   MaxHealth: 100
   currentHealth: 100
+  percent: 0
 --- !u!114 &8578363647241352065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,9 +517,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34056d4d067b454da4abf6534ca150a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
+  health: {fileID: 1629699127009224947}
   healRate: 2
-  motor: {fileID: 0}
+  motor: {fileID: 2177432087948183529}
   points: 0
   moveSpeed: 25
   rotateSpeed: 300
@@ -562,6 +565,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd38379564bb2214e91574dc28f7c8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6494276499628999554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6039651502282674655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e33f917b491bef4682104987f7f418c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ePawn: {fileID: 0}
+  ptank: {fileID: 0}
+  motor: {fileID: 0}
+  target: {fileID: 0}
+  targetTf: {fileID: 0}
+  eHealth: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  enemyType: 4
+  timer: 3
+  avoidanceStage: 0
+  avoidanceTime: 2
+  stateEnterTime: 0
+  stateExitTime: 30
+  restingHealthRate: 0
+  fleeDistance: 1
+  currentWaypoint: 0
+  withinWaypointRange: 1
+  stopDistance: 0
 --- !u!1 &8487199104496298057
 GameObject:
   m_ObjectHideFlags: 0

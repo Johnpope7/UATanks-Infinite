@@ -8,6 +8,7 @@ public class AIController : Controller
 {
     #region Variables
     [Header("AI Controller Components")]
+    [SerializeField]
     public GameObject target; //stores the AI's target
     public Transform targetTf; //stores the transform of the AI's target
     public Health eHealth; //stores the Health script of the enemy
