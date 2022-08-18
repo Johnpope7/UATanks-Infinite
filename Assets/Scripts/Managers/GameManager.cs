@@ -22,7 +22,19 @@ public class GameManager : MonoBehaviour
     public int maxEnemies; //int that stores the maximum amount of enemies allowed per level
     public float enemyspawnDelayTimer; //cooldown timer for enemy spawns
 
+    [Header("Pickup Variables")]
     public float currentPowerUps; //stores the amount of powerups on the map
+    public List<Transform> pickupSpawners;
+    public List<GameObject> pickupPrefabs;
+    public GameObject powerup;
+    public float spawnDelay = 10.0f;
+    public float maxPowerUps = 4.0f;
+
+    [Header("Map Variables")]
+    public Room[,] grid;//map tile grid array
+    public bool isMapOfTheDay = false;//bool for map of the day seed
+    public bool isRandomMap = true; //bool for random map seed
+
     #endregion
     void PlayerDeath() 
     {
