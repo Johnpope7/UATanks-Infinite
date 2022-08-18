@@ -3634,7 +3634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7316799986486764492, guid: aef2d5ee21214a84eaa148d51bdbb3f1, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7316799986486764492, guid: aef2d5ee21214a84eaa148d51bdbb3f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3689,14 +3689,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: War Tank 01 Red
       objectReference: {fileID: 0}
-    - target: {fileID: 6346126675350204578, guid: 9409318fa72fbef49b4d7dad6f24c7b2, type: 3}
-      propertyPath: ePawn
-      value: 
-      objectReference: {fileID: 527930139}
-    - target: {fileID: 6346126675350204578, guid: 9409318fa72fbef49b4d7dad6f24c7b2, type: 3}
-      propertyPath: motor
-      value: 
-      objectReference: {fileID: 527930140}
     - target: {fileID: 6346126675350204578, guid: 9409318fa72fbef49b4d7dad6f24c7b2, type: 3}
       propertyPath: ptank
       value: 
@@ -3759,28 +3751,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9409318fa72fbef49b4d7dad6f24c7b2, type: 3}
---- !u!114 &527930139 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 380852227682695937, guid: 9409318fa72fbef49b4d7dad6f24c7b2, type: 3}
-  m_PrefabInstance: {fileID: 527930138}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c34056d4d067b454da4abf6534ca150a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &527930140 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3919155716082806594, guid: 9409318fa72fbef49b4d7dad6f24c7b2, type: 3}
-  m_PrefabInstance: {fileID: 527930138}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97bc04f127b536241b92ccccd1154e0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &529791413
 GameObject:
   m_ObjectHideFlags: 0
@@ -4254,7 +4224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7316799986486764492, guid: d3e1086ce2bc6284c9d1febe86b35129, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7316799986486764492, guid: d3e1086ce2bc6284c9d1febe86b35129, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14611,7 +14581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7345037330904031427, guid: 0a2b09c6eeafaf04d8c9173936b6d35e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7345037330904031427, guid: 0a2b09c6eeafaf04d8c9173936b6d35e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14702,7 +14672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7316799986486764492, guid: d63e690d463be074ea922dae48b9f8b9, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7316799986486764492, guid: d63e690d463be074ea922dae48b9f8b9, type: 3}
       propertyPath: m_LocalPosition.x
