@@ -60,7 +60,7 @@ public class MapGenerator : MonoBehaviour
             for (int i = 0; i < rows; i++) 
             {
                 //for each column in that row...
-                for (int j = 0; j < cols; j++)
+                for (int j = 0; j < colm; j++)
                 {
                     //Find the location
                     float xPos = roomWidth * j;
@@ -101,7 +101,7 @@ public class MapGenerator : MonoBehaviour
                     {
                         tempRoom.doorEast.SetActive(false);
                     }
-                    else if (j == cols - 1)
+                    else if (j == colm - 1)
                     {
                         //Otherwise, if we are on the last column row, open the west door
                         tempRoom.doorWest.SetActive(false);
