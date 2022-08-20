@@ -12,6 +12,7 @@ TagManager:
   - Room
   - Spawner
   - Manager
+  - Pause Menu
   layers:
   - Default
   - TransparentFX
