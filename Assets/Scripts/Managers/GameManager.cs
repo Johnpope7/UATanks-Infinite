@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     public float maxPickUps = 4.0f;
 
     [Header("Map Variables")]
+    [SerializeField]
+    public MapGenerator mapGenerator;
     public Room[,] grid;//map tile grid array
     public bool isMapOfTheDay = false;//bool for map of the day seed
     public bool isRandomMap = true; //bool for random map seed
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: 0" + score;
         //actually set score to zero
         score = 0;
+        mapGenerator.GenerateMap();
     }
 
     // Update is called once per frame
