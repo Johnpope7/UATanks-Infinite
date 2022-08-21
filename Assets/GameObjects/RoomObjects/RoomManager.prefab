@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5757641032639498814}
-  - component: {fileID: 8227279208907693244}
-  m_Layer: 10
+  - component: {fileID: 3728227835872389112}
+  - component: {fileID: 7746411941921502638}
+  m_Layer: 12
   m_Name: RoomManager
   m_TagString: Manager
   m_Icon: {fileID: 0}
@@ -31,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8227279208907693244
+--- !u!114 &3728227835872389112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,7 +41,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 2850953911265091577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bc5391df5f87046b5f4ed78a2d9280, type: 3}
+  m_Script: {fileID: 11500000, guid: bd38379564bb2214e91574dc28f7c8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
+--- !u!114 &7746411941921502638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2850953911265091577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6606cc5e57a82274cbe7b818737924f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> enemyList; //list all enemies in the level
     public List<GameObject> enemyPrefabs; //lists all enemy prefabs that can spawn as enemies
     public List<GameObject> enemySpawners; //lists all enemy spawners
+    public List<Transform> waypoints; //list of waypoints for enemy patrols
     public GameObject playertarget; //stores the game object of the player
     public int currentEnemies; //an int for storing the amount of enemies currently in the level
     public int maxEnemies; //int that stores the maximum amount of enemies allowed per level
@@ -28,12 +29,6 @@ public class GameManager : MonoBehaviour
     public List<GameObject> livePickUps; //list of pickups on the ground
     public float pickupSpawnDelay = 10.0f;
     public float maxPickUps = 4.0f;
-
-    [Header("Player Variables")]
-    public List<GameObject> players;//list for all players in the game
-    [SerializeField]
-    public List<GameObject> playerPrefabs;//list for player prefabs
-    public List<Transform> playerSpawners;//list for player spawners
 
     [Header("Map Variables")]
     [SerializeField]
