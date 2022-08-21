@@ -220,6 +220,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcb089cfb9d760d49b80f132f81fad44, type: 3}
+--- !u!114 &165077254 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8369216337833589792, guid: dcb089cfb9d760d49b80f132f81fad44, type: 3}
+  m_PrefabInstance: {fileID: 165077253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +324,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &7573153505382855742
+--- !u!1001 &1363088030
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -322,7 +333,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6505574158529505160, guid: 4ec69fef12c94f141a74def55ed69e9b, type: 3}
       propertyPath: m_Name
-      value: RoomManager
+      value: MapManager
       objectReference: {fileID: 0}
     - target: {fileID: 7534240742779591885, guid: 4ec69fef12c94f141a74def55ed69e9b, type: 3}
       propertyPath: m_RootOrder
@@ -370,6 +381,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ec69fef12c94f141a74def55ed69e9b, type: 3}
+--- !u!114 &1363088031 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 936589165574858770, guid: 4ec69fef12c94f141a74def55ed69e9b, type: 3}
+  m_PrefabInstance: {fileID: 1363088030}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9a50a34f27cb144bb6fb5b3342f20b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7949910774883461512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -378,9 +400,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7345037330904031424, guid: 0a2b09c6eeafaf04d8c9173936b6d35e, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 165077254}
+    - target: {fileID: 7345037330904031424, guid: 0a2b09c6eeafaf04d8c9173936b6d35e, type: 3}
       propertyPath: mapGenerator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1363088031}
     - target: {fileID: 7345037330904031425, guid: 0a2b09c6eeafaf04d8c9173936b6d35e, type: 3}
       propertyPath: m_Name
       value: GameManager

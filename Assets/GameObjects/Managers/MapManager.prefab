@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7534240742779591885}
   - component: {fileID: 936589165574858770}
-  m_Layer: 0
-  m_Name: RoomManager
-  m_TagString: Untagged
+  m_Layer: 12
+  m_Name: MapManager
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,11 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c9a50a34f27cb144bb6fb5b3342f20b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colm: 0
-  rows: 0
+  colm: 4
+  rows: 4
   roomWidth: 50
   roomHeight: 50
-  roomPrefabs: []
-  presetSeed: 0
+  roomPrefabs:
+  - {fileID: 121816, guid: 41d4243be8ad3a5409422171976de7ff, type: 3}
+  - {fileID: 121816, guid: dd51d814658455842a80d6c7719bae79, type: 3}
+  - {fileID: 121816, guid: d96af4e6d43b34d47a527151b6e651a8, type: 3}
+  - {fileID: 121816, guid: c81e651d077cd9d45b2f95a86ec58a31, type: 3}
+  presetSeed: 10
   mapSeed: 0
   mapOfDaySeed: 0

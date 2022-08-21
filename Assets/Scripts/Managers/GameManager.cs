@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: 0" + score;
         //actually set score to zero
         score = 0;
-        mapGenerator.GenerateMap();
     }
 
     // Update is called once per frame

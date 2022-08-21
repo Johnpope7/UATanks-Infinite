@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7345037330904031427}
   - component: {fileID: 7345037330904031424}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GameManager
   m_TagString: GameManager
   m_Icon: {fileID: 0}
@@ -46,13 +46,18 @@ MonoBehaviour:
   score: 0
   scoreText: {fileID: 0}
   enemyList: []
-  enemyPrefabs: []
+  enemyPrefabs:
+  - {fileID: 6039651502282674655, guid: d3e1086ce2bc6284c9d1febe86b35129, type: 3}
+  - {fileID: 6039651502282674655, guid: 46a3d71f8b6a8bb44827b7000d9c09e6, type: 3}
+  - {fileID: 6039651502282674655, guid: d63e690d463be074ea922dae48b9f8b9, type: 3}
+  - {fileID: 6039651502282674655, guid: 9409318fa72fbef49b4d7dad6f24c7b2, type: 3}
+  - {fileID: 6039651502282674655, guid: aef2d5ee21214a84eaa148d51bdbb3f1, type: 3}
   enemySpawners: []
   waypoints: []
   playertarget: {fileID: 0}
   currentEnemies: 0
-  maxEnemies: 0
-  enemySpawnDelayTimer: 0
+  maxEnemies: 4
+  enemySpawnDelayTimer: 10
   currentPickUps: 0
   pickupSpawners: []
   pickupPrefabs: []

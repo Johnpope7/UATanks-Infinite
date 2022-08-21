@@ -27,10 +27,18 @@ public class MapGenerator : MonoBehaviour
     #region Functions
     #region Builtin Functions
     // Start is called before the first frame update
+
     void Start()
     {
-     
+        //set our random map seed 
+        mapSeed = (DateToInt(DateTime.Now));
+        //set our map of the day seed
+        mapOfDaySeed = DateToInt(DateTime.Now.Date);
+        Debug.Log("mapOfDaySeed set to " + mapOfDaySeed);
+        //Generate Map
+        GenerateMap();
     }
+    #endregion
     #region Custom Functions
     public void GenerateMap() 
     {
@@ -42,16 +50,19 @@ public class MapGenerator : MonoBehaviour
                 //initialize the generator with our map of the day seed
                 UnityEngine.Random.InitState(mapOfDaySeed);
             }
-            else if (GameManager.instance.isRandomMap) 
-            {
-                //else, initialize the random generator with our random seed
-                UnityEngine.Random.InitState(mapSeed);
-            }
-            else
-            {
-                //if neither of the above, use a preset
-                UnityEngine.Random.InitState(presetSeed);
-            }
+        }
+        else if (GameManager.instance.isRandomMap)
+        {
+            Debug.Log("Random Seed Chosen");
+            //else, initialize the random generator with our random seed
+            UnityEngine.Random.InitState(mapSeed);
+        }
+        else
+        {
+            Debug.Log("Preset Chosen");
+            //if neither of the above, use a preset
+            UnityEngine.Random.InitState(presetSeed);
+        }
 
             //clears out the grid. Which Column = X  Which Row = Y
             GameManager.instance.grid = new Room[colm, rows];
@@ -59,6 +70,7 @@ public class MapGenerator : MonoBehaviour
             //for each row
             for (int i = 0; i < rows; i++) 
             {
+                Debug.Log("Creating Rows");
                 //for each column in that row...
                 for (int j = 0; j < colm; j++)
                 {
@@ -66,16 +78,12 @@ public class MapGenerator : MonoBehaviour
                     float xPos = roomWidth * j;
                     float zPos = roomHeight * i;
                     Vector3 newPos = new Vector3(xPos, 0.0f, zPos);
-
                     //Create a new room at appropriate location
                     GameObject tempRoomObj = Instantiate(RandomRoomPrefab(), newPos, Quaternion.identity);
-
                     //set its parent
                     tempRoomObj.transform.parent = this.transform;
-
                     //Name it something meaningful
-                    tempRoomObj.name = "Room_" + j + "" + i;
-
+                    tempRoomObj.name = "Room_" + j + "" + i;;
                     //get room object
                     Room tempRoom = tempRoomObj.GetComponent<Room>();
 
@@ -116,7 +124,7 @@ public class MapGenerator : MonoBehaviour
                     GameManager.instance.grid[i, j] = tempRoom;
                 }
             }
-        }
+    
     }
 
     public int DateToInt(DateTime dateToUse) 
@@ -130,7 +138,6 @@ public class MapGenerator : MonoBehaviour
     {
         return roomPrefabs[UnityEngine.Random.Range(0, roomPrefabs.Length)];
     }
-    #endregion
     #endregion
     #endregion
 }
