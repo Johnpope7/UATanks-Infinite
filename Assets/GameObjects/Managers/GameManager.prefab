@@ -56,14 +56,19 @@ MonoBehaviour:
   waypoints: []
   playertarget: {fileID: 0}
   currentEnemies: 0
-  maxEnemies: 4
+  maxEnemies: 32
   enemySpawnDelayTimer: 10
   currentPickUps: 0
   pickupSpawners: []
-  pickupPrefabs: []
+  pickupPrefabs:
+  - {fileID: 1935954468079617145, guid: 1c863a1c16423cc4c98901df9557be57, type: 3}
+  - {fileID: 2933856630766586860, guid: b118d1ff58f376642accd3e38167ce43, type: 3}
+  - {fileID: 7153936318355994504, guid: 25a18acfb80c6e54880dfe76c12650f5, type: 3}
+  - {fileID: 2917913512585131779, guid: ba3ac4ebc6404f8438397474c5518967, type: 3}
+  - {fileID: 2093697028260332617, guid: 27aa09d36dbe3ce459b92ca7147031bb, type: 3}
   livePickUps: []
   pickupSpawnDelay: 10
-  maxPickUps: 4
+  maxPickUps: 28
   mapGenerator: {fileID: 0}
   isMapOfTheDay: 0
   isRandomMap: 1
