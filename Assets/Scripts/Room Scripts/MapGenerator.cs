@@ -34,6 +34,7 @@ public class MapGenerator : MonoBehaviour
         mapSeed = (DateToInt(DateTime.Now));
         //set our map of the day seed
         mapOfDaySeed = DateToInt(DateTime.Now.Date);
+        Debug.Log("mapOfDaySeed set to " + mapOfDaySeed);
         //Generate Map
         GenerateMap();
     }
@@ -52,11 +53,13 @@ public class MapGenerator : MonoBehaviour
         }
         else if (GameManager.instance.isRandomMap)
         {
+            Debug.Log("Random Seed Chosen");
             //else, initialize the random generator with our random seed
             UnityEngine.Random.InitState(mapSeed);
         }
         else
         {
+            Debug.Log("Preset Chosen");
             //if neither of the above, use a preset
             UnityEngine.Random.InitState(presetSeed);
         }
@@ -67,6 +70,7 @@ public class MapGenerator : MonoBehaviour
             //for each row
             for (int i = 0; i < rows; i++) 
             {
+                Debug.Log("Creating Rows");
                 //for each column in that row...
                 for (int j = 0; j < colm; j++)
                 {
