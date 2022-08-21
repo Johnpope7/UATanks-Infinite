@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class GameManager : MonoBehaviour 
+public class GameManager : MonoBehaviour
 {
     #region Variables
     //our gamemanager instance
@@ -29,12 +29,6 @@ public class GameManager : MonoBehaviour
     public float pickupSpawnDelay = 10.0f;
     public float maxPickUps = 4.0f;
 
-    [Header("Player Variables")]
-    public List<GameObject> players;//list for all players in the game
-    [SerializeField]
-    public List<GameObject> playerPrefabs;//list for player prefabs
-    public List<Transform> playerSpawners;//list for player spawners
-
     [Header("Map Variables")]
     [SerializeField]
     public MapGenerator mapGenerator;
@@ -43,7 +37,7 @@ public class GameManager : MonoBehaviour
     public bool isRandomMap = true; //bool for random map seed
 
     #endregion
-    void PlayerDeath() 
+    void PlayerDeath()
     {
         //DO NOT DESTROY THE PLAYER,
         //JUST DISABLE THEIR COLLIDERS
@@ -55,7 +49,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-        else 
+        else
         {
             Destroy(gameObject);
         }
@@ -68,11 +62,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     //method for updating the players points
-    public void UpdateScore(int _points) 
+    public void UpdateScore(int _points)
     {
         score += _points;
         scoreText.text = "Score: " + score;

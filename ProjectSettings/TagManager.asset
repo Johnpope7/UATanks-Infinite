@@ -3,30 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Bullet
-  - GameManager
-  - Enemy
-  - Waypoint
-  - Pickup
-  - Room
-  - Spawner
-  - Manager
-  - Pause Menu
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - Enemy
-  - Waypoint
-  - Powerup
-  - Obstacles
-  - Room
-  - Spawner
-  - Manager
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
