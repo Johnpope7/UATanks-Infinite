@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WaypointLister : MonoBehaviour
 {
+    [SerializeField]
     private Transform tf;//stores the transform of the waypoint
     // Start is called before the first frame update
     void Start()
