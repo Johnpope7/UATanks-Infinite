@@ -711,7 +711,6 @@ public class AIController : Controller
     public void SetWaypointManager(WapointManager wm)
     {
         _wm = wm;
-        Debug.Log(string.Format("WapointManager set to {0}!", _wm));
     }
     #endregion
 }
