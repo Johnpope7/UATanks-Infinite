@@ -62,7 +62,7 @@ MonoBehaviour:
   enemySpawners: []
   playertarget: {fileID: 0}
   currentEnemies: 0
-  maxEnemies: 1
+  maxEnemies: 32
   enemySpawnDelayTimer: 10
   currentPickUps: 0
   livePickUps: []
@@ -78,3 +78,4 @@ MonoBehaviour:
   mapGenerator: {fileID: 0}
   isMapOfTheDay: 0
   isRandomMap: 1
+  timer: {fileID: 0}
