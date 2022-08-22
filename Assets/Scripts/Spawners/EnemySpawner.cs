@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemySpawner : Spawner
 {
+    [SerializeField]
+    private WapointManager _wm;
+
     protected override void Awake()
     {
         base.Awake();
@@ -29,6 +32,7 @@ public class EnemySpawner : Spawner
                 int random = Random.Range(0, GameManager.instance.enemyPrefabs.Count);
                 //instantiate an enemy using our random int at this objects position
                 GameObject enemy = Instantiate(GameManager.instance.enemyPrefabs[random], tf.position, tf.rotation);
+                enemy.GetComponent<AIController>().SetWaypointManager(_wm);//sets the waypoint manager of the AI Controller on the newly made enemy
                 //name it something meaningful, in this case, the name of the prefab it chose
                 //and the number it is in the current enemies count
                 enemy.name = GameManager.instance.enemyPrefabs[random] + "_" + GameManager.instance.currentEnemies;
@@ -42,6 +46,7 @@ public class EnemySpawner : Spawner
         }
         base.Update();
     }
+
     protected override void OnDestroy()
     {
         GameManager.instance.enemySpawners.Remove(gameObject);

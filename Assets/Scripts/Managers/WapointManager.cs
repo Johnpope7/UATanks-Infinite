@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WapointManager : MonoBehaviour
 {
+    [Header("Waypoint List")]
+    [SerializeField]
+    public List<Transform> waypoints; //list of waypoints for enemy patrols
     // Start is called before the first frame update
     void Start()
     {

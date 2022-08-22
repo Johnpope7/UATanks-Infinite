@@ -24,6 +24,8 @@ public class AIController : Controller
     protected float timer = 3f; //timer for the melee state change coroutine
 
     [Header("Navigation Variables")]
+    [SerializeField]
+    private WapointManager wm;
     Vector3 movementVec; //stores the vector3 of the movement
     Vector3 randomVec; //stores the random vector3 generated for wandering
     Quaternion rotationQuat; //stores the quaternion of the rotation
@@ -48,14 +50,10 @@ public class AIController : Controller
     private bool isWandering = false; //stores if the AI is wandering or not
     private float wanderingSpeed = 10; //speed of wander
     Vector3? direction = null; //random direction for wandering
+    private WapointManager _wm;
     #endregion
 
     #region Builtin functions
-    void Awake()
-    {
-
-    }
-
     void Start()
     {
 
@@ -265,12 +263,12 @@ public class AIController : Controller
     private void Patrol()
     {
         //set target equal to current waypoint
-        newTarget = GameManager.instance.waypoints[currentWaypoint].transform.gameObject;
+        newTarget = wm.waypoints[currentWaypoint].transform.gameObject;
         //set target transform equal to current waypoint transform
-        newTargetTf = GameManager.instance.waypoints[currentWaypoint].transform;
+        newTargetTf = wm.waypoints[currentWaypoint].transform;
         SetTarget(newTarget, newTargetTf);
 
-        if (motor.RotateTowards(GameManager.instance.waypoints[currentWaypoint].position, base.ePawn.rotateSpeed))
+        if (motor.RotateTowards(wm.waypoints[currentWaypoint].position, base.ePawn.rotateSpeed))
         {
             //Does nothing
             Debug.Log("Target is ", target);
@@ -283,12 +281,12 @@ public class AIController : Controller
             motor.Move(movement);
         }
         //if close to waypoint
-        Vector3 delta = GameManager.instance.waypoints[currentWaypoint].position - tf.position;
+        Vector3 delta = wm.waypoints[currentWaypoint].position - tf.position;
         delta.y = 0;
         if (delta.sqrMagnitude < withinWaypointRange)
         {
             //and if the waypoint index hasn't been completed
-            if (currentWaypoint < GameManager.instance.waypoints.Count - 1)
+            if (currentWaypoint < wm.waypoints.Count - 1)
             {
                 //move to the next patrol waypoint
                 currentWaypoint++;
@@ -380,7 +378,15 @@ public class AIController : Controller
         yield return new WaitForSeconds(3);
         isWandering = false;
     }
-
+    public WapointManager GetWaypointManager()
+    {
+        return _wm;
+    }
+    public void SetWaypointManager(WapointManager wm)
+    {
+        _wm = wm;
+        Debug.Log(string.Format("WapointManager set to {0}!", _wm));
+    }
     #endregion
 }
 /*
