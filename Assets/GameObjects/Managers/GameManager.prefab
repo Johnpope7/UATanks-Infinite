@@ -45,6 +45,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   scoreText: {fileID: 0}
+  currentPlayers: 0
+  maxPlayers: 1
+  playerSpawnDelayTimer: 8
+  playerSpawners: []
+  playerPrefabs:
+  - {fileID: 6039651502282674655, guid: f4e23e1a070e24d46afe2d379e731c15, type: 3}
+  playerList: []
   enemyList: []
   enemyPrefabs:
   - {fileID: 6039651502282674655, guid: d3e1086ce2bc6284c9d1febe86b35129, type: 3}
@@ -55,9 +62,10 @@ MonoBehaviour:
   enemySpawners: []
   playertarget: {fileID: 0}
   currentEnemies: 0
-  maxEnemies: 32
+  maxEnemies: 1
   enemySpawnDelayTimer: 10
   currentPickUps: 0
+  livePickUps: []
   pickupSpawners: []
   pickupPrefabs:
   - {fileID: 1935954468079617145, guid: 1c863a1c16423cc4c98901df9557be57, type: 3}
@@ -65,7 +73,6 @@ MonoBehaviour:
   - {fileID: 7153936318355994504, guid: 25a18acfb80c6e54880dfe76c12650f5, type: 3}
   - {fileID: 2917913512585131779, guid: ba3ac4ebc6404f8438397474c5518967, type: 3}
   - {fileID: 2093697028260332617, guid: 27aa09d36dbe3ce459b92ca7147031bb, type: 3}
-  livePickUps: []
   pickupSpawnDelay: 10
   maxPickUps: 4
   mapGenerator: {fileID: 0}

@@ -14,9 +14,12 @@ public class EnemySpawner : Spawner
     // Start is called before the first frame update
     protected override void Start()
     {
-        nextSpawnTime = Time.time + GameManager.instance.enemySpawnDelayTimer;
-        GameManager.instance.enemySpawners.Add(gameObject);
-        base.Start();
+        if (GameManager.instance)
+        {
+            nextSpawnTime = Time.time + GameManager.instance.enemySpawnDelayTimer;
+            GameManager.instance.enemySpawners.Add(gameObject);
+        }
+            base.Start();
     }
 
     // Update is called once per frame

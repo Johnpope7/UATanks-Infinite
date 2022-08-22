@@ -8,9 +8,15 @@ public class GameManager : MonoBehaviour
     //our gamemanager instance
     public static GameManager instance;
 
-    [Header("Player Score")]
+    [Header("Player Variables")]
     public int score; //the players score
     public Text scoreText;
+    public int currentPlayers; //the current amount of players spawned
+    public int maxPlayers; //the maximum amount of players in the game
+    public float playerSpawnDelayTimer;//how long until the player spawns
+    public List<GameObject> playerSpawners; //list of all player spawners
+    public List<GameObject> playerPrefabs; //list of all possible prefabs for the player
+    public List<GameObject> playerList; //list of all players in the game
 
     [Header("Enemy Variables")]
     public List<GameObject> enemyList; //list all enemies in the level
@@ -19,13 +25,14 @@ public class GameManager : MonoBehaviour
     public GameObject playertarget; //stores the game object of the player
     public int currentEnemies; //an int for storing the amount of enemies currently in the level
     public int maxEnemies; //int that stores the maximum amount of enemies allowed per level
+    [SerializeField]
     public float enemySpawnDelayTimer; //cooldown timer for enemy spawns
 
     [Header("Pickup Variables")]
     public float currentPickUps; //stores the amount of powerups on the map
+    public List<GameObject> livePickUps; //list of pickups on the ground
     public List<Transform> pickupSpawners;
     public List<GameObject> pickupPrefabs;
-    public List<GameObject> livePickUps; //list of pickups on the ground
     public float pickupSpawnDelay = 10.0f;
     public float maxPickUps = 4.0f;
 
