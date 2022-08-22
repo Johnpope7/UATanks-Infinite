@@ -7,6 +7,9 @@ public class enemyLister : MonoBehaviour
     
     void Start()
     {
-        GameManager.instance.enemyList.Add(this.gameObject);//adds the enemy to the list of Enemies
+        if (GameManager.instance)
+        {
+            GameManager.instance.enemyList.Add(this.gameObject);//adds the enemy to the list of Enemies
+        }
     }
 }

@@ -45,9 +45,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tf: {fileID: 1545585622290208455}
   nextSpawnTime: 5
-  isMoving: 1
-  minX: 0
+  isMoving: 0
+  minX: 1
   maxX: 10
-  minZ: 0
+  minZ: 1
   maxZ: 10
   setY: 2

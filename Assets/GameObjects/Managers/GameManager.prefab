@@ -55,7 +55,7 @@ MonoBehaviour:
   enemySpawners: []
   playertarget: {fileID: 0}
   currentEnemies: 0
-  maxEnemies: 4
+  maxEnemies: 32
   enemySpawnDelayTimer: 10
   currentPickUps: 0
   pickupSpawners: []
