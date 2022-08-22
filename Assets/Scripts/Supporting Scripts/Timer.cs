@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour
 {
     #region Variables
     [SerializeField]
-    private float timerDuration = 3f * 60f; //how long the timer lasts
+    private float timerDuration = 1f * 60f; //how long the timer lasts
     public float timer; //the actual timer
     [SerializeField]
     private Text firstMinute; //the double digit minute slot on the timer
