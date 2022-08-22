@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class GameManager : MonoBehaviour 
+using UnityEngine.SceneManagement;
+public class GameManager : MonoBehaviour
 {
     #region Variables
     //our gamemanager instance
@@ -43,8 +44,11 @@ public class GameManager : MonoBehaviour
     public bool isMapOfTheDay = false;//bool for map of the day seed
     public bool isRandomMap = true; //bool for random map seed
 
+    [Header("Win Variables")]
+    public Timer timer;
+
     #endregion
-    void PlayerDeath() 
+    void PlayerDeath()
     {
         //DO NOT DESTROY THE PLAYER,
         //JUST DISABLE THEIR COLLIDERS
@@ -56,7 +60,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-        else 
+        else
         {
             Destroy(gameObject);
         }
@@ -69,13 +73,20 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     //method for updating the players points
-    public void UpdateScore(int _points) 
+    public void UpdateScore(int _points)
     {
         score += _points;
         scoreText.text = "Score: " + score;
+    }
+    public void Win()
+    {
+        if (timer.timer == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2); //loads the next scene in the build index0
+        }
     }
 }
