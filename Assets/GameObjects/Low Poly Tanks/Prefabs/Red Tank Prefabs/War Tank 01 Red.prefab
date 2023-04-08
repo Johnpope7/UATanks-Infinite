@@ -556,8 +556,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  enemyType: 2
+  enemyType: 3
   timer: 3
+  wm: {fileID: 0}
   avoidanceStage: 0
   avoidanceTime: 2
   stateEnterTime: 0
