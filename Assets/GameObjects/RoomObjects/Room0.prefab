@@ -1418,6 +1418,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7108059857553714371, guid: 6058842aeea06c94b889af9535716e3d, type: 3}
+      propertyPath: wm
+      value: 
+      objectReference: {fileID: 7285881936031515872}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6058842aeea06c94b889af9535716e3d, type: 3}
 --- !u!4 &802699260253039341 stripped
@@ -1732,6 +1736,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4280803831158765867, guid: c044aa541971425448f56f29070cb840, type: 3}
   m_PrefabInstance: {fileID: 3171208621436806092}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7285881936031515872 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5268862420729571116, guid: c044aa541971425448f56f29070cb840, type: 3}
+  m_PrefabInstance: {fileID: 3171208621436806092}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d0962290aae354db5ee43ab3638607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3800094402034962293
 PrefabInstance:
   m_ObjectHideFlags: 0

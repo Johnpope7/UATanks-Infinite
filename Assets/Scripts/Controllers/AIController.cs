@@ -25,16 +25,16 @@ public class AIController : Controller
 
     [Header("Navigation Variables")]
     [SerializeField]
-    private WapointManager wm;
+    protected WapointManager wm;
     Vector3 movementVec; //stores the vector3 of the movement
     Vector3 randomVec; //stores the random vector3 generated for wandering
     Quaternion rotationQuat; //stores the quaternion of the rotation
     Quaternion randomQuat; //stores the randomly generated quaternion
-    private float movement; //stores the movement the enemy will use
-    private float rotation; //stores the rotation the enemy will use
+    protected float movement; //stores the movement the enemy will use
+    protected float rotation; //stores the rotation the enemy will use
     public int avoidanceStage = 0;
     public float avoidanceTime = 2.0f;
-    private float exitTime = 0.5f; //variable that stores Move exit times
+    protected float exitTime = 0.5f; //variable that stores Move exit times
     public float stateEnterTime; //variable to store the time a state was entered
     public float stateExitTime = 30.0f; //float that determines state exiting time
     public float restingHealthRate; //sets the heal rate in hp per second
@@ -42,15 +42,15 @@ public class AIController : Controller
     public int currentWaypoint = 0; //stores ai's current value in waypoint index
     public float withinWaypointRange = 1.0f; //value for if our ai is close enough to its waypoint
     public float stopDistance; //to stop AI before they enter the players space
-    private float fireRadius = 4f; //gives the radius at which the enemy can turn and fire
-    private float currentAngle; // stores the current angle of the tank cannon
-    private float fireAngle; //stores the firing angle of the cannon
-    private float distanceToTarget; //stores the distance to the target
-    private float angleModifier = 1; //changes the range of the Wander radius
-    private bool isWandering = false; //stores if the AI is wandering or not
-    private float wanderingSpeed = 10; //speed of wander
+    protected float fireRadius = 4f; //gives the radius at which the enemy can turn and fire
+    protected float currentAngle; // stores the current angle of the tank cannon
+    protected float fireAngle; //stores the firing angle of the cannon
+    protected float distanceToTarget; //stores the distance to the target
+    protected float angleModifier = 1; //changes the range of the Wander radius
+    protected bool isWandering = false; //stores if the AI is wandering or not
+    protected float wanderingSpeed = 10; //speed of wander
     Vector3? direction = null; //random direction for wandering
-    private WapointManager _wm;
+    protected WapointManager _wm;
     #endregion
 
     #region Builtin functions
@@ -63,463 +63,6 @@ public class AIController : Controller
     void Update()
     {
 
-        foreach (GameObject enemy in GameManager.instance.enemyList)
-        {
-            tf = enemy.GetComponent<Transform>(); //sets the transform of the AI pawn
-            ePawn = enemy.GetComponent<EnemyTank>(); //gets the pawn of the AI pawn
-            motor = enemy.GetComponent<TankMotor>(); //gets the TankMotor and sets it to motor
-            eHealth = enemy.GetComponent<Health>(); //gets the health script of the enemy
-        }
-        if (enemyType == EnemyType.Clyde)
-        {
-            Debug.Log("");
-            switch (ePawn.aiState) //Chase, Attack, Flee, Rest, Patrol, Idle
-            {
-                case Pawn.AIState.Attack:
-                    //get our rotation instructions from the targets position - the enemy position
-                    Quaternion desiredRotation = Quaternion.LookRotation(targetTf.position - ePawn.turretTf.transform.position, Vector3.up);
-                    //rotate towards our target starting from our current rotation to the desired rotation 
-                    ePawn.turretTf.transform.rotation = Quaternion.RotateTowards(ePawn.turretTf.transform.rotation, desiredRotation, ePawn.rotateSpeed * Time.fixedDeltaTime);
-                    //get our distance to target
-                    distanceToTarget = GetDistanceToTarget();
-                    //get current angle to target
-                    currentAngle = GetAngleToTarget();
-
-                    //if the distance to our target is less than or equal to our fire radius
-                    if (distanceToTarget <= fireRadius)
-                    {
-                        Debug.Log("attack: distanceToTarget <= fireRadius");
-                        // and if our current angle is less than or equal to our weapon's fire angle
-                        if (currentAngle <= fireAngle)
-                        {
-                            Debug.Log("attack: currentAngle <= fireAngle");
-                            //Attack the target
-                            Attack();
-                        }
-                    }
-                    else if (distanceToTarget > fireRadius)
-                    {
-                        Debug.Log("Change state to Chase");
-                        ChangeState(Pawn.AIState.Chase, ePawn); //if the distance to the target is greater than fire radius than switch to chase
-                    }
-                    break;
-                case Pawn.AIState.Chase:
-
-                    distanceToTarget = GetDistanceToTarget(); //sets the distanceToTarget
-
-                    if (!See(target))
-                    {
-                        Debug.Log("Chase: target not seen, change to patrol");
-                        ChangeState(Pawn.AIState.Patrol, ePawn); //changes to the patrol state of the target cant be seen
-                        return;
-                    }
-                    else if (avoidanceStage != 0)
-                    {
-                        Debug.Log("Chase: Avoidance");
-                        Avoidance(); //if the avoidance stage is not zero, start avoiding
-                    }
-                    else if (distanceToTarget <= fireRadius * 0.5)
-                    {
-                        Debug.Log("Chase: Change state to attack");
-                        ChangeState(Pawn.AIState.Attack, ePawn); //change state to attack if the distance to the target is less than or half the fireRadius
-                    }
-                    else
-                    {
-                        Debug.Log("Chase: Target");
-                        Chase(targetTf); //makes the enemy chase
-                    }
-                    break;
-                case Pawn.AIState.Flee:
-
-                    distanceToTarget = GetDistanceToTarget(); //sets the distanceToTarget
-
-                    if (eHealth.percent >= 0.25)
-                    {
-                        Debug.Log("Flee: Low Health");
-                        Flee(); // at 25 percent health enemies flee
-                    }
-                    else if (distanceToTarget > fireRadius * 2)
-                    {
-                        Debug.Log("Flee: Change state Rest");
-                        ChangeState(Pawn.AIState.Rest, ePawn); //if the distance to the target is greater than 2 times the fire radius, rest
-                    }
-                    break;
-                case Pawn.AIState.Patrol:
-                    if (avoidanceStage != 0) //if the avoidance stage isnt zero.
-                    {
-                        Debug.Log("Patrol: Avoidance");
-                        //avoid obstacles
-                        Avoidance();
-                    }
-                    else if (See(target))
-                    {
-                        Debug.Log("Patrol: Change state LookAt");
-                        ChangeState(Pawn.AIState.LookAt, ePawn); //change state to look at
-                    }
-                    else
-                    {
-                        Debug.Log("Patrol");
-                        //otherwise patrol
-                        Patrol();
-                    }
-                    break;
-                case Pawn.AIState.LookAt:
-                    if (See(target))
-                    {
-                        Debug.Log("LookAt: Set target");
-                        SetTarget(target, target.transform); //sets the new target
-                        Debug.Log("LookAt: Change state chase");
-                        ChangeState(Pawn.AIState.Chase, ePawn); //changes state to chase
-                    }
-                    else
-                    {
-                        Debug.Log("LookAt: change state Patrol");
-                        //input a timer for going into Patrol state
-                        ChangeState(Pawn.AIState.Patrol, ePawn); //go back into patrol if they dont see you
-                    }
-                    break;
-                case Pawn.AIState.Rest:
-                    if (eHealth.percent >= 0.25) //if health is below 25 percent, rest
-                    {
-                        Debug.Log("Rest: Low health");
-                        Rest();
-                    }
-                    else
-                    {
-                        Debug.Log("Rest: Change state patrol");
-                        ChangeState(Pawn.AIState.Patrol, ePawn); //return top patrolling
-                    }
-                    break;
-                case Pawn.AIState.Idle:
-                    Debug.Log("Idle");
-                    Idle();
-                    break;
-            }
-        }
-        if (enemyType == EnemyType.Blinky)
-        {
-            Debug.Log("");
-            switch (ePawn.aiState) //Chase, Attack, Flee, Rest, Patrol, Idle
-            {
-                case Pawn.AIState.Attack:
-                    //get our rotation instructions from the targets position - the enemy position
-                    Quaternion desiredRotation = Quaternion.LookRotation(targetTf.position - ePawn.turretTf.transform.position, Vector3.up);
-                    //rotate towards our target starting from our current rotation to the desired rotation 
-                    ePawn.turretTf.transform.rotation = Quaternion.RotateTowards(ePawn.turretTf.transform.rotation, desiredRotation, ePawn.rotateSpeed * Time.fixedDeltaTime);
-                    //get our distance to target
-                    distanceToTarget = GetDistanceToTarget();
-                    //get current angle to target
-                    currentAngle = GetAngleToTarget();
-
-                    //if the distance to our target is less than or equal to our fire radius
-                    if (distanceToTarget <= fireRadius)
-                    {
-                        // and if our current angle is less than or equal to our weapon's fire angle
-                        if (currentAngle <= fireAngle)
-                        {
-                            //Attack the target
-                            Attack();
-                        }
-                    }
-                    else if (distanceToTarget > fireRadius)
-                    {
-                        ChangeState(Pawn.AIState.Chase, ePawn); //if the distance to the target is greater than fire radius than switch to chase
-                    }
-                    break;
-                case Pawn.AIState.Chase:
-
-                    distanceToTarget = GetDistanceToTarget(); //sets the distanceToTarget
-
-                    if (!See(target))
-                    {
-                        ChangeState(Pawn.AIState.Patrol, ePawn); //changes to the patrol state of the target cant be seen
-                        return;
-                    }
-                    else if (avoidanceStage != 0)
-                    {
-                        Avoidance(); //if the avoidance stage is not zero, start avoiding
-                    }
-                    else if (distanceToTarget <= fireRadius * 0.5)
-                    {
-                        ChangeState(Pawn.AIState.Attack, ePawn); //change state to attack if the distance to the target is less than or half the fireRadius
-                    }
-                    else
-                    {
-                        Chase(targetTf); //makes the enemy chase
-                    }
-                    break;
-                case Pawn.AIState.Flee:
-
-                    distanceToTarget = GetDistanceToTarget(); //sets the distanceToTarget
-
-                    if (eHealth.percent >= 0.25)
-                    {
-                        Flee(); // at 25 percent health enemies flee
-                    }
-                    else if (distanceToTarget > fireRadius * 2)
-                    {
-                        ChangeState(Pawn.AIState.Rest, ePawn); //if the distance to the target is greater than 2 times the fire radius, rest
-                    }
-                    break;
-                case Pawn.AIState.Patrol:
-                    if (avoidanceStage != 0) //if the avoidance stage isnt zero.
-                    {
-                        //avoid obstacles
-                        Avoidance();
-                    }
-                    else if (See(target))
-                    {
-                        ChangeState(Pawn.AIState.LookAt, ePawn); //change state to look at
-                    }
-                    else
-                    {
-                        //otherwise patrol
-                        Patrol();
-                    }
-                    break;
-                case Pawn.AIState.LookAt:
-                    if (See(target))
-                    {
-                        SetTarget(target, target.transform); //sets the new target
-                        ChangeState(Pawn.AIState.Chase, ePawn); //changes state to chase
-                    }
-                    else
-                    {
-                        //input a timer for going into Patrol state
-                        ChangeState(Pawn.AIState.Patrol, ePawn); //go back into patrol if they dont see you
-                    }
-                    break;
-                case Pawn.AIState.Rest:
-                    if (eHealth.percent >= 0.25) //if health is below 25 percent, rest
-                    {
-                        Rest();
-                    }
-                    else
-                    {
-                        ChangeState(Pawn.AIState.Patrol, ePawn); //return top patrolling
-                    }
-                    break;
-                case Pawn.AIState.Idle:
-                    Idle();
-                    break;
-            }
-        }
-        if (enemyType == EnemyType.Pinky)
-        {
-            Debug.Log("");
-            switch (ePawn.aiState) //Chase, Attack, Flee, Rest, Patrol, Idle
-            {
-                case Pawn.AIState.Attack:
-                    //get our rotation instructions from the targets position - the enemy position
-                    Quaternion desiredRotation = Quaternion.LookRotation(targetTf.position - ePawn.turretTf.transform.position, Vector3.up);
-                    //rotate towards our target starting from our current rotation to the desired rotation 
-                    ePawn.turretTf.transform.rotation = Quaternion.RotateTowards(ePawn.turretTf.transform.rotation, desiredRotation, ePawn.rotateSpeed * Time.fixedDeltaTime);
-                    //get our distance to target
-                    distanceToTarget = GetDistanceToTarget();
-                    //get current angle to target
-                    currentAngle = GetAngleToTarget();
-
-                    //if the distance to our target is less than or equal to our fire radius
-                    if (distanceToTarget <= fireRadius)
-                    {
-                        // and if our current angle is less than or equal to our weapon's fire angle
-                        if (currentAngle <= fireAngle)
-                        {
-                            //Attack the target
-                            Attack();
-                        }
-                    }
-                    else if (distanceToTarget > fireRadius)
-                    {
-                        ChangeState(Pawn.AIState.Chase, ePawn); //if the distance to the target is greater than fire radius than switch to chase
-                    }
-                    break;
-                case Pawn.AIState.Chase:
-
-                    distanceToTarget = GetDistanceToTarget(); //sets the distanceToTarget
-
-                    if (!See(target))
-                    {
-                        ChangeState(Pawn.AIState.Patrol, ePawn); //changes to the patrol state of the target cant be seen
-                        return;
-                    }
-                    else if (avoidanceStage != 0)
-                    {
-                        Avoidance(); //if the avoidance stage is not zero, start avoiding
-                    }
-                    else if (distanceToTarget <= fireRadius * 0.5)
-                    {
-                        ChangeState(Pawn.AIState.Attack, ePawn); //change state to attack if the distance to the target is less than or half the fireRadius
-                    }
-                    else
-                    {
-                        Chase(targetTf); //makes the enemy chase
-                    }
-                    break;
-                case Pawn.AIState.Flee:
-
-                    distanceToTarget = GetDistanceToTarget(); //sets the distanceToTarget
-
-                    if (eHealth.percent >= 0.25)
-                    {
-                        Flee(); // at 25 percent health enemies flee
-                    }
-                    else if (distanceToTarget > fireRadius * 2)
-                    {
-                        ChangeState(Pawn.AIState.Rest, ePawn); //if the distance to the target is greater than 2 times the fire radius, rest
-                    }
-                    break;
-                case Pawn.AIState.Patrol:
-                    if (avoidanceStage != 0) //if the avoidance stage isnt zero.
-                    {
-                        //avoid obstacles
-                        Avoidance();
-                    }
-                    else if (See(target))
-                    {
-                        ChangeState(Pawn.AIState.LookAt, ePawn); //change state to look at
-                    }
-                    else
-                    {
-                        //otherwise patrol
-                        Patrol();
-                    }
-                    break;
-                case Pawn.AIState.LookAt:
-                    if (See(target))
-                    {
-                        SetTarget(target, target.transform); //sets the new target
-                        ChangeState(Pawn.AIState.Chase, ePawn); //changes state to chase
-                    }
-                    else
-                    {
-                        //input a timer for going into Patrol state
-                        ChangeState(Pawn.AIState.Patrol, ePawn); //go back into patrol if they dont see you
-                    }
-                    break;
-                case Pawn.AIState.Rest:
-                    if (eHealth.percent >= 0.25) //if health is below 25 percent, rest
-                    {
-                        Rest();
-                    }
-                    else
-                    {
-                        ChangeState(Pawn.AIState.Patrol, ePawn); //return top patrolling
-                    }
-                    break;
-                case Pawn.AIState.Idle:
-                    Idle();
-                    break;
-            }
-        }
-        if (enemyType == EnemyType.Inky)
-        {
-            Debug.Log("");
-            switch (ePawn.aiState) //Chase, Attack, Flee, Rest, Patrol, Idle
-            {
-                case Pawn.AIState.Attack:
-                    //get our rotation instructions from the targets position - the enemy position
-                    Quaternion desiredRotation = Quaternion.LookRotation(targetTf.position - ePawn.turretTf.transform.position, Vector3.up);
-                    //rotate towards our target starting from our current rotation to the desired rotation 
-                    ePawn.turretTf.transform.rotation = Quaternion.RotateTowards(ePawn.turretTf.transform.rotation, desiredRotation, ePawn.rotateSpeed * Time.fixedDeltaTime);
-                    //get our distance to target
-                    distanceToTarget = GetDistanceToTarget();
-                    //get current angle to target
-                    currentAngle = GetAngleToTarget();
-
-                    //if the distance to our target is less than or equal to our fire radius
-                    if (distanceToTarget <= fireRadius)
-                    {
-                        // and if our current angle is less than or equal to our weapon's fire angle
-                        if (currentAngle <= fireAngle)
-                        {
-                            //Attack the target
-                            Attack();
-                        }
-                    }
-                    else if (distanceToTarget > fireRadius)
-                    {
-                        ChangeState(Pawn.AIState.Chase, ePawn); //if the distance to the target is greater than fire radius than switch to chase
-                    }
-                    break;
-                case Pawn.AIState.Chase:
-
-                    distanceToTarget = GetDistanceToTarget(); //sets the distanceToTarget
-
-                    if (!See(target))
-                    {
-                        ChangeState(Pawn.AIState.Patrol, ePawn); //changes to the patrol state of the target cant be seen
-                        return;
-                    }
-                    else if (avoidanceStage != 0)
-                    {
-                        Avoidance(); //if the avoidance stage is not zero, start avoiding
-                    }
-                    else if (distanceToTarget <= fireRadius * 0.5)
-                    {
-                        ChangeState(Pawn.AIState.Attack, ePawn); //change state to attack if the distance to the target is less than or half the fireRadius
-                    }
-                    else
-                    {
-                        Chase(targetTf); //makes the enemy chase
-                    }
-                    break;
-                case Pawn.AIState.Flee:
-
-                    distanceToTarget = GetDistanceToTarget(); //sets the distanceToTarget
-
-                    if (eHealth.percent >= 0.25)
-                    {
-                        Flee(); // at 25 percent health enemies flee
-                    }
-                    else if (distanceToTarget > fireRadius * 2)
-                    {
-                        ChangeState(Pawn.AIState.Rest, ePawn); //if the distance to the target is greater than 2 times the fire radius, rest
-                    }
-                    break;
-                case Pawn.AIState.Patrol:
-                    if (avoidanceStage != 0) //if the avoidance stage isnt zero.
-                    {
-                        //avoid obstacles
-                        Avoidance();
-                    }
-                    else if (See(target))
-                    {
-                        ChangeState(Pawn.AIState.LookAt, ePawn); //change state to look at
-                    }
-                    else
-                    {
-                        //otherwise patrol
-                        Patrol();
-                    }
-                    break;
-                case Pawn.AIState.LookAt:
-                    if (See(target))
-                    {
-                        SetTarget(target, target.transform); //sets the new target
-                        ChangeState(Pawn.AIState.Chase, ePawn); //changes state to chase
-                    }
-                    else
-                    {
-                        //input a timer for going into Patrol state
-                        ChangeState(Pawn.AIState.Patrol, ePawn); //go back into patrol if they dont see you
-                    }
-                    break;
-                case Pawn.AIState.Rest:
-                    if (eHealth.percent >= 0.25) //if health is below 25 percent, rest
-                    {
-                        Rest();
-                    }
-                    else
-                    {
-                        ChangeState(Pawn.AIState.Patrol, ePawn); //return top patrolling
-                    }
-                    break;
-                case Pawn.AIState.Idle:
-                    Idle();
-                    break;
-            }
-        }
     }
     #endregion
 
@@ -582,13 +125,13 @@ public class AIController : Controller
         //need to find out a good way for avoidance
     }
 
-    private void Attack()
+    protected void Attack()
     {
         //fire your weapon
         base.ePawn.Shoot(base.ePawn.p_shotForce);
     }
 
-    private void Chase(Transform targetTf)
+    protected void Chase(Transform targetTf)
     {
         GetMoveRotateFloats();
         motor.Rotation(rotation);
@@ -596,19 +139,22 @@ public class AIController : Controller
 
     }
 
-    private void Flee()
+    protected void Flee()
     {
         GetMoveRotateFloats();
         motor.Rotation(-rotation);
         motor.Move(-movement);
     }
-    private void Patrol()
+    protected void Patrol()
     {
         //set target equal to current waypoint
         newTarget = wm.waypoints[currentWaypoint].transform.gameObject;
         //set target transform equal to current waypoint transform
         newTargetTf = wm.waypoints[currentWaypoint].transform;
         SetTarget(newTarget, newTargetTf);
+        //if close to waypoint
+        Vector3 delta = wm.waypoints[currentWaypoint].position - tf.position;
+        delta.y = 0;
 
         if (motor.RotateTowards(wm.waypoints[currentWaypoint].position, base.ePawn.rotateSpeed))
         {
@@ -622,9 +168,7 @@ public class AIController : Controller
             motor.Rotation(rotation);
             motor.Move(movement);
         }
-        //if close to waypoint
-        Vector3 delta = wm.waypoints[currentWaypoint].position - tf.position;
-        delta.y = 0;
+
         if (delta.sqrMagnitude < withinWaypointRange)
         {
             //and if the waypoint index hasn't been completed
@@ -641,25 +185,25 @@ public class AIController : Controller
             }
         }
     }
-    private void Rest()
+    protected void Rest()
     {
         Health health = GetComponent<Health>();
         health.Heal(base.ePawn.healRate * Time.deltaTime); //heals the healRate every second
     }
 
-    private void Idle()
+    protected void Idle()
     {
         Debug.Log("Idling");
     }
     #endregion
 
-    private float GetDistanceToTarget()
+    protected float GetDistanceToTarget()
     {
         float distanceToTarget = Vector3.Distance(targetTf.position, base.ePawn.transform.position); //finds the distance to the target
         return distanceToTarget; //returns it
     }
 
-    private float GetAngleToTarget()
+    protected float GetAngleToTarget()
     {
         //get our target direction by subtracting our position from our target's position
         Vector3 targetDir = targetTf.position - base.ePawn.transform.position;
@@ -696,14 +240,14 @@ public class AIController : Controller
         StartCoroutine(LookAround());
     }
 
-    private void RotateAgent()
+    protected void RotateAgent()
     {
         float rotateOrientation = Random.Range(-30f, 30f) * angleModifier; //random number * -30 degrees and 30 degrees times the angleModifier
         randomQuat = Quaternion.AngleAxis(rotateOrientation, Vector3.up); //determines the new rotation the enemy is facing
         rotation = randomQuat.y;
     }
 
-    private void MoveAgent()
+    protected void MoveAgent()
     {
         //TODO; Make a random Vector3 Generator that is focused around the enemy
 
@@ -730,57 +274,5 @@ public class AIController : Controller
     }
     #endregion
 }
-/*
- Wander Logic
-                        if (isWandering) 
-                        {
-                            if (direction.HasValue) 
-                            {
-                                GetMoveRotateFloats();
-                                motor.Rotation(rotation);
-                                motor.Move(movement);
-                            }
-                        }
-                        isWandering = true;
-                        StartCoroutine(Wander());
 
-Old Patrol Stuff
-
-       //set target equal to current waypoint
-        newTarget = GameManager.instance.waypoints[currentWaypoint].transform.gameObject;
-        //set target transform equal to current waypoint transform
-        newTargetTf = GameManager.instance.waypoints[currentWaypoint].transform;
-        SetTarget(newTarget, newTargetTf);
-
-        if (motor.RotateTowards(GameManager.instance.waypoints[currentWaypoint].position, base.ePawn.rotateSpeed))
-        {
-            //Does nothing
-            Debug.Log("Target is ", target);
-        }
-        else
-        {
-            //Move forward
-            GetMoveRotateFloats();
-            motor.Rotation(rotation);
-            motor.Move(movement);
-        }
-        //if close to waypoint
-        Vector3 delta = GameManager.instance.waypoints[currentWaypoint].position - tf.position;
-        delta.y = 0;
-        if (delta.sqrMagnitude < withinWaypointRange)
-        {
-            //and if the waypoint index hasn't been completed
-            if (currentWaypoint < GameManager.instance.waypoints.Count - 1)
-            {
-                //move to the next patrol waypoint
-                currentWaypoint++;
-            }
-
-            else
-            {
-                //if it has reset index
-                currentWaypoint = 0;
-            }
-        }
- */
 

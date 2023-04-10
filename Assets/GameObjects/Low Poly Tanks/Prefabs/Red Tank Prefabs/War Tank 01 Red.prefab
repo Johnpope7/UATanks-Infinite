@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 3919155716082806594}
   - component: {fileID: 380852227682695937}
   - component: {fileID: 4443067843068122785}
-  - component: {fileID: 6346126675350204578}
+  - component: {fileID: 6389050211917271316}
   m_Layer: 6
   m_Name: War Tank 01 Red
   m_TagString: Enemy
@@ -535,7 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd38379564bb2214e91574dc28f7c8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6346126675350204578
+--- !u!114 &6389050211917271316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -544,19 +544,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6039651502282674655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e33f917b491bef4682104987f7f418c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b5a69a67fa9a7240a7c5bec7628978a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ePawn: {fileID: 380852227682695937}
+  ePawn: {fileID: 0}
   ptank: {fileID: 0}
-  motor: {fileID: 3919155716082806594}
-  target: {fileID: 0}
-  targetTf: {fileID: 0}
+  motor: {fileID: 0}
+  target: {fileID: 6039651502282674655, guid: f4e23e1a070e24d46afe2d379e731c15, type: 3}
+  targetTf: {fileID: 7316799986486764492, guid: f4e23e1a070e24d46afe2d379e731c15, type: 3}
   eHealth: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  enemyType: 3
+  enemyType: 2
   timer: 3
   wm: {fileID: 0}
   avoidanceStage: 0

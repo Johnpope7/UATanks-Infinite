@@ -2212,6 +2212,10 @@ PrefabInstance:
       propertyPath: wm
       value: 
       objectReference: {fileID: 5273372294154294306}
+    - target: {fileID: 1297547374087914098, guid: 66b9227045c8af04a806fa3fcf79cead, type: 3}
+      propertyPath: _wm
+      value: 
+      objectReference: {fileID: 5273372294154294306}
     - target: {fileID: 2946686774152402128, guid: 66b9227045c8af04a806fa3fcf79cead, type: 3}
       propertyPath: m_Name
       value: Enemy Spawner
@@ -2387,6 +2391,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7108059857553714371, guid: 6058842aeea06c94b889af9535716e3d, type: 3}
+      propertyPath: wm
+      value: 
+      objectReference: {fileID: 5273372294154294306}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6058842aeea06c94b889af9535716e3d, type: 3}
 --- !u!4 &802699260253039341 stripped
