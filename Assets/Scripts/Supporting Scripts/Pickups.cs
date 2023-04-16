@@ -25,7 +25,7 @@ public class Pickups : MonoBehaviour
             puMan.Add(powerup);//Adds the powerup to the manager
 
         }
-        GameManager.instance.currentPickUps--; //decerase the amount of powerups in the game
+        GameManager.instance.currentPickUps--; //decrease the amount of powerups in the game
         Destroy(gameObject); //destroys this object
     }
     #endregion
