@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     public GameObject instigator; //stores the object that fires this bullet
     private Rigidbody brb; //stores the bullets rigidbody
     private float bulletDamage; //the damage value of the bullet
-
+    public AudioSource hitSound; //holds the sound effect of the bullet hitting the target
 
 
     #endregion
@@ -21,6 +21,7 @@ public class Bullet : MonoBehaviour
     #region BuiltIn Method
     private void OnTriggerEnter(Collider _other)
     {
+        hitSound.Play();
         GameObject enemyObject = _other.gameObject;
         Health enemyHealth = enemyObject.GetComponent<Health>();
         if (enemyHealth != null) //if the enemy has health, make it take damage
