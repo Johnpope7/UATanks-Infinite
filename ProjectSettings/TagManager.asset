@@ -13,6 +13,10 @@ TagManager:
   - Spawner
   - Manager
   - Pause Menu
+  - MusicSlider
+  - MasterSlider
+  - sfxSlider
+  - Music
   layers:
   - Default
   - TransparentFX
