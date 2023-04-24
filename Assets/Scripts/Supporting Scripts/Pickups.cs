@@ -7,6 +7,7 @@ public class Pickups : MonoBehaviour
     #region Variables
     public PowerUps powerup; //variable that holds the powerup of this pickup
     public Transform tf; //the pickups position in the gameworld
+    public AudioSource pickupSound; //sound that plays when a pickup is picked up
     #endregion
     #region Functions
     #region Custom Functions
@@ -18,6 +19,7 @@ public class Pickups : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        pickupSound.Play();
         PowerUpManager puMan = other.GetComponent<PowerUpManager>(); //stores the objects power up manager
 
         if (puMan != null)
