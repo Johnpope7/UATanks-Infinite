@@ -12,6 +12,7 @@ public class Pawn : MonoBehaviour
     public int points; //decides how many points a pawn is worth
     protected bool isDead; //a boolean for death logic later
                            // Start is called before the first frame update
+    public AudioSource DeathSound; //sound played on Death
     [Header("Movement Properties")]
     public float moveSpeed; //movement speed of the tank
     public float rotateSpeed; //turn speed of the tank
@@ -40,6 +41,7 @@ public class Pawn : MonoBehaviour
     [SerializeField]
     protected Transform firingZone; //the spot from which the bullet comes from
     public float bulletLifeSpan; //decides how long the bullet has till its destroyed
+    public AudioSource ShotSound; //stores the sound of the shot
 
     [Header("AI Settings")]
     public float withinWaypointRange; //close enough distance to waypoint
@@ -67,6 +69,7 @@ public class Pawn : MonoBehaviour
         float ch = health.currentHealth;
         if (ch <= 0) 
         {
+            DeathSound.Play();
             GameManager.instance.UpdateScore(points); //wrties the new score to the game manager
             Destroy(gameObject); //destroys pawn
             isDead = true; //sets isDead variable which will be used later
@@ -77,6 +80,7 @@ public class Pawn : MonoBehaviour
     {
         if (shootCoolDown <= 0)
         {
+            ShotSound.Play();
             //create the vector 3 variable that is equal to our firing zones forward vector multiplied by shot force
             Vector3 shotDir = firingZone.forward * shotForce;
             Debug.Log("shotDir is," + shotDir);
